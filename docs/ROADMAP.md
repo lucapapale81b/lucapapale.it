@@ -14,12 +14,12 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 
 ## Fase 1 — Struttura del sito
 
-- [ ] `BaseLayout`
-- [ ] `Header`
-- [ ] `Footer`
-- [ ] Navigazione
-- [ ] Stili globali
-- [ ] Responsive di base
+- [x] `BaseLayout`
+- [x] `Header`
+- [x] `Footer`
+- [x] Navigazione
+- [x] Stili globali
+- [x] Responsive di base
 
 ## Fase 2 — Home page
 

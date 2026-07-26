@@ -11,6 +11,9 @@
   --color-ocean-700: #145f63;
   --color-ocean-600: #197278;
   --color-ocean-100: #dcefee;
+  --color-glacier-700: #175b73;
+  --color-glacier-800: #10495d;
+  --color-glacier-100: #dcecf2;
   --color-terracotta-600: #b34f32;
   --color-terracotta-100: #f7e3dc;
   --color-success: #24734a;
@@ -24,6 +27,9 @@
   --color-border: var(--color-sand-200);
   --color-primary: var(--color-ocean-700);
   --color-primary-hover: #0e4c4f;
+  --color-primary-soft: var(--color-ocean-100);
+  --color-on-primary-muted: #d7e7e6;
+  --color-on-primary-border: rgb(255 255 255 / 0.24);
   --color-accent: var(--color-terracotta-600);
   --color-focus: var(--color-terracotta-600);
 
@@ -100,4 +106,11 @@
   --breakpoint-md: 48rem;
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
+}
+
+:root[data-primary-theme="glacier"] {
+  --color-primary: var(--color-glacier-700);
+  --color-primary-hover: var(--color-glacier-800);
+  --color-primary-soft: var(--color-glacier-100);
+  --color-on-primary-muted: #d9e9ef;
 }

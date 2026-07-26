@@ -1,0 +1,111 @@
+---
+const currentYear = new Date().getFullYear();
+const githubUrl = 'https://github.com/lucapapale81b';
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <div class="site-footer__identity">
+      <p class="site-footer__name">Luca Papale</p>
+      <p class="site-footer__tagline">Software Developer · Traveler</p>
+    </div>
+
+    <nav aria-label="Collegamenti personali">
+      <ul class="site-footer__links" role="list">
+        <li><a href={githubUrl} rel="me noreferrer">GitHub</a></li>
+        <li>
+          <span class="site-footer__placeholder">
+            LinkedIn <span class="visually-hidden">(collegamento in preparazione)</span>
+          </span>
+        </li>
+        <li>
+          <span class="site-footer__placeholder">
+            Email <span class="visually-hidden">(collegamento in preparazione)</span>
+          </span>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__meta">
+      <p>© {currentYear} Luca Papale</p>
+      <p>Realizzato con Astro e pubblicato tramite GitHub Pages.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-block-start: var(--border-width) solid var(--color-border);
+    background: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--space-7);
+  }
+
+  .site-footer__identity,
+  .site-footer__meta {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .site-footer__name {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .site-footer__tagline,
+  .site-footer__meta,
+  .site-footer__placeholder {
+    color: var(--color-on-primary-muted);
+  }
+
+  .site-footer__tagline,
+  .site-footer__meta {
+    font-size: var(--font-size-sm);
+  }
+
+  .site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-5);
+  }
+
+  .site-footer a {
+    color: var(--color-surface);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .site-footer a:hover {
+    color: var(--color-on-primary-muted);
+  }
+
+  .site-footer__placeholder {
+    display: inline-block;
+    padding-block: var(--space-2);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+    }
+
+    .site-footer__links {
+      justify-content: flex-end;
+    }
+
+    .site-footer__meta {
+      grid-column: 1 / -1;
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding-block-start: var(--space-5);
+      border-block-start: var(--border-width) solid
+        var(--color-on-primary-border);
+    }
+  }
+</style>

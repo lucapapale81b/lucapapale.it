@@ -1,46 +1,26 @@
-# Astro Starter Kit: Basics
+# lucapapale.it
 
-```sh
-npm create astro@latest -- --template basics
-```
+Sito personale di Luca Papale, realizzato con Astro, TypeScript, HTML semantico
+e CSS puro.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Il progetto è statico e sarà pubblicato tramite GitHub Pages.
 
-## 🚀 Project Structure
+## Comandi
 
-Inside of your Astro project, you'll see the following folders and files:
+| Comando | Azione |
+| --- | --- |
+| `npm install` | Installa le dipendenze |
+| `npm run dev` | Avvia il server di sviluppo |
+| `npm run build` | Genera la build statica in `dist/` |
+| `npm run preview` | Avvia l'anteprima della build |
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## Struttura principale
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- `src/components/`: componenti Astro condivisi
+- `src/layouts/`: layout riutilizzabili
+- `src/pages/`: pagine e route
+- `src/styles/`: design token e stili globali
+- `docs/`: architettura, contenuti, roadmap e decisioni
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Prima di contribuire, leggere `AGENTS.md` e la documentazione nella cartella
+`docs/`.
