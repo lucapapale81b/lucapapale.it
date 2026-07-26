@@ -1,22 +1,44 @@
-## Development
+# Istruzioni per gli assistenti di coding
 
-When starting the dev server, use background mode:
+## Prima di modificare il progetto
 
-```
+- Leggere sempre `docs/ARCHITECTURE.md`, `docs/ROADMAP.md` e `docs/CONTENT.md`.
+- Non inventare informazioni personali, professionali o contenuti di viaggio.
+- Aggiornare la documentazione quando cambiano decisioni architetturali o roadmap.
+
+## Vincoli tecnici
+
+- Mantenere il sito statico.
+- Non introdurre dipendenze senza una reale necessità.
+- Non aggiungere React, Vue, Angular, Tailwind, backend o database senza esplicita richiesta.
+- Preferire HTML semantico e CSS semplice.
+- Usare JavaScript soltanto quando strettamente necessario.
+- Mantenere accessibilità, responsive design, SEO e prestazioni.
+- Evitare astrazioni premature e componenti generici non necessari.
+
+## Verifica
+
+- Eseguire `npm run build` dopo modifiche significative.
+
+## Server di sviluppo
+
+Avviare il server in background:
+
+```sh
 astro dev --background
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Gestirlo con `astro dev stop`, `astro dev status` e `astro dev logs`.
 
-## Documentation
+## Documentazione Astro
 
-Full documentation: https://docs.astro.build
+Documentazione completa: <https://docs.astro.build>
 
-Consult these guides before working on related tasks:
+Consultare le guide pertinenti prima di lavorare sulle relative aree:
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- [Routing](https://docs.astro.build/en/guides/routing/)
+- [Componenti Astro](https://docs.astro.build/en/basics/astro-components/)
+- [Framework UI](https://docs.astro.build/en/guides/framework-components/)
+- [Content Collections](https://docs.astro.build/en/guides/content-collections/)
+- [Stili](https://docs.astro.build/en/guides/styling/)
+- [Internazionalizzazione](https://docs.astro.build/en/guides/internationalization/)
