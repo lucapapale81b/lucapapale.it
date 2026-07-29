@@ -1,0 +1,164 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__inner container">
+    <div class="hero__content">
+      <h1 id="hero-title">Ciao, sono Luca.</h1>
+
+      <p class="hero__lead">
+        Sviluppo software backend e, nel tempo libero, esploro il mondo un
+        viaggio alla volta.
+      </p>
+
+      <p class="hero__introduction">
+        Qui raccolgo ciò che sto imparando costruendo software, le esperienze
+        professionali che hanno formato il mio modo di lavorare e i progetti
+        che mi aiutano a crescere. Accanto al codice trovano spazio i viaggi,
+        la fotografia e le esperienze che continuano a cambiare il mio punto
+        di vista.
+      </p>
+
+      <div class="hero__actions">
+        <a class="hero__button hero__button--primary" href="#">
+          Il mio percorso
+        </a>
+        <a class="hero__button hero__button--secondary" href="#">
+          I miei viaggi
+        </a>
+      </div>
+    </div>
+
+    <figure
+      class="hero__media"
+      role="img"
+      aria-label="Spazio riservato a una fotografia verticale di Luca durante un viaggio"
+    >
+      <figcaption>
+        <span>Fotografia</span>
+        <small>Placeholder verticale</small>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .hero__content {
+    display: grid;
+    max-inline-size: var(--content-narrow);
+    align-content: center;
+  }
+
+  .hero__lead {
+    max-inline-size: 36rem;
+    margin-block-start: var(--space-5);
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  .hero__introduction {
+    max-inline-size: 38rem;
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-start: var(--space-6);
+  }
+
+  .hero__button {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2) var(--space-5);
+    border: var(--border-width) solid var(--color-primary);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .hero__button--primary {
+    background: var(--color-primary);
+    color: var(--color-surface);
+  }
+
+  .hero__button--primary:hover {
+    border-color: var(--color-primary-hover);
+    background: var(--color-primary-hover);
+    color: var(--color-surface);
+  }
+
+  .hero__button--secondary {
+    background: transparent;
+    color: var(--color-primary);
+  }
+
+  .hero__button--secondary:hover {
+    background: var(--color-primary-soft);
+    color: var(--color-primary-hover);
+  }
+
+  .hero__media {
+    display: grid;
+    inline-size: min(100%, 32rem);
+    aspect-ratio: 4 / 5;
+    place-items: center;
+    justify-self: center;
+    overflow: hidden;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-background-subtle);
+    color: var(--color-text-muted);
+  }
+
+  .hero__media figcaption {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-5);
+    text-align: center;
+  }
+
+  .hero__media span {
+    color: var(--color-text);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  @media (min-width: 30rem) {
+    .hero__actions {
+      gap: var(--space-4);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hero {
+      padding-block: clamp(var(--space-8), 8vw, var(--space-9));
+    }
+
+    .hero__inner {
+      grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+      gap: clamp(var(--space-7), 7vw, var(--space-9));
+      align-items: center;
+    }
+
+    .hero__media {
+      justify-self: end;
+    }
+  }
+</style>
