@@ -1,40 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/perito-moreno.png';
+---
+
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__inner container">
     <div class="hero__content">
       <h1 id="hero-title">Ciao, sono Luca.</h1>
 
       <p class="hero__lead">
-        Sviluppo software backend e, nel tempo libero, esploro il mondo un
-        viaggio alla volta.
-      </p>
-
-      <p class="hero__introduction">
-        Qui raccolgo ciò che sto imparando costruendo software, le esperienze
-        professionali che hanno formato il mio modo di lavorare e i progetti
-        che mi aiutano a crescere. Accanto al codice trovano spazio i viaggi,
-        la fotografia e le esperienze che continuano a cambiare il mio punto
-        di vista.
+        Sono uno sviluppatore backend e questo è il luogo in cui raccolgo il
+        mio percorso professionale, ciò che imparo costruendo software e i
+        progetti su cui lavoro. Fuori dal codice, racconto i viaggi, le
+        fotografie e le esperienze che ampliano il mio punto di vista.
       </p>
 
       <div class="hero__actions">
         <a class="hero__button hero__button--primary" href="#">
-          Il mio percorso
+          Scopri il mio percorso
         </a>
         <a class="hero__button hero__button--secondary" href="#">
-          I miei viaggi
+          Esplora i miei viaggi
         </a>
       </div>
     </div>
 
-    <figure
-      class="hero__media"
-      role="img"
-      aria-label="Spazio riservato a una fotografia verticale di Luca durante un viaggio"
-    >
-      <figcaption>
-        <span>Fotografia</span>
-        <small>Placeholder verticale</small>
-      </figcaption>
+    <figure class="hero__media">
+      <Image
+        src={heroImage}
+        alt="Luca osserva il ghiacciaio Perito Moreno dalla barca"
+        widths={[480, 640]}
+        sizes="(min-width: 64rem) 40vw, 100vw"
+        format="webp"
+        quality={85}
+        loading="eager"
+        fetchpriority="high"
+      />
     </figure>
   </div>
 </section>
@@ -56,18 +57,8 @@
   }
 
   .hero__lead {
-    max-inline-size: 36rem;
-    margin-block-start: var(--space-5);
-    color: var(--color-primary);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-medium);
-    line-height: 1.5;
-  }
-
-  .hero__introduction {
     max-inline-size: 38rem;
     margin-block-start: var(--space-5);
-    color: var(--color-text-muted);
     font-size: var(--font-size-lg);
   }
 
@@ -114,30 +105,18 @@
   }
 
   .hero__media {
-    display: grid;
-    inline-size: min(100%, 32rem);
-    aspect-ratio: 4 / 5;
-    place-items: center;
+    inline-size: min(100%, 34rem);
+    aspect-ratio: 1;
     justify-self: center;
     overflow: hidden;
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-lg);
-    background: var(--color-background-subtle);
-    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
   }
 
-  .hero__media figcaption {
-    display: grid;
-    gap: var(--space-1);
-    padding: var(--space-5);
-    text-align: center;
-  }
-
-  .hero__media span {
-    color: var(--color-text);
-    font-family: var(--font-family-display);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
+  .hero__media :global(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: 58% center;
   }
 
   @media (min-width: 30rem) {
@@ -158,6 +137,7 @@
     }
 
     .hero__media {
+      aspect-ratio: 5 / 6;
       justify-self: end;
     }
   }

@@ -6,6 +6,11 @@ const navigationItems = [
   { label: 'Contatti', href: '/contatti' },
 ];
 
+const externalLinks = [
+  { label: 'GitHub', href: 'https://github.com/lucapapale81b' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/lucapapale' },
+];
+
 const normalizePath = (path: string) =>
   path === '/' ? path : path.replace(/\/+$/, '');
 
@@ -38,6 +43,23 @@ const currentPath = normalizePath(Astro.url.pathname);
             );
           })
         }
+      </ul>
+    </nav>
+
+    <nav class="site-header__external" aria-label="Profili esterni">
+      <ul class="site-header__external-links" role="list">
+        {
+          externalLinks.map((item) => (
+            <li>
+              <a href={item.href} rel="me noreferrer">{item.label}</a>
+            </li>
+          ))
+        }
+        <li>
+          <span>
+            Email <span class="visually-hidden">(collegamento in preparazione)</span>
+          </span>
+        </li>
       </ul>
     </nav>
   </div>
@@ -115,18 +137,60 @@ const currentPath = normalizePath(Astro.url.pathname);
     text-underline-offset: 0.4rem;
   }
 
+  .site-header__external-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+  }
+
+  .site-header__external-links a,
+  .site-header__external-links span {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    align-items: center;
+  }
+
+  .site-header__external-links a {
+    color: var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+  }
+
+  .site-header__external-links a:hover {
+    color: var(--color-primary);
+  }
+
   @media (min-width: 48rem) {
     .site-header__inner {
       display: grid;
       grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
-      column-gap: clamp(var(--space-7), 8vw, var(--space-9));
+      column-gap: clamp(var(--space-6), 5vw, var(--space-8));
       padding-block: var(--space-5);
     }
 
     .site-header__navigation {
       justify-content: flex-start;
       gap: var(--space-5);
+    }
+
+    .site-header__external {
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-header__inner {
+      grid-template-columns: auto auto minmax(0, 1fr);
+    }
+
+    .site-header__external {
+      grid-column: auto;
+      justify-self: end;
     }
   }
 </style>
