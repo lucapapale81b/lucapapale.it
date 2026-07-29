@@ -11,9 +11,9 @@
   --color-ocean-700: #145f63;
   --color-ocean-600: #197278;
   --color-ocean-100: #dcefee;
-  --color-glacier-700: #175b73;
-  --color-glacier-800: #10495d;
-  --color-glacier-100: #dcecf2;
+  --color-glacier-700: #1b5f82;
+  --color-glacier-800: #134a66;
+  --color-glacier-100: #dcebf3;
   --color-terracotta-600: #b34f32;
   --color-terracotta-100: #f7e3dc;
   --color-success: #24734a;
@@ -112,5 +112,5 @@
   --color-primary: var(--color-glacier-700);
   --color-primary-hover: var(--color-glacier-800);
   --color-primary-soft: var(--color-glacier-100);
-  --color-on-primary-muted: #d9e9ef;
+  --color-on-primary-muted: #dce9f0;
 }

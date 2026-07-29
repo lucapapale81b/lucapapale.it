@@ -73,12 +73,14 @@ const currentPath = normalizePath(Astro.url.pathname);
 
   .site-header__name {
     font-family: var(--font-family-display);
-    font-size: var(--font-size-xl);
+    font-size: clamp(1.375rem, 1.25rem + 0.4vw, 1.625rem);
     font-weight: var(--font-weight-bold);
     letter-spacing: var(--letter-spacing-tight);
+    line-height: var(--line-height-tight);
   }
 
   .site-header__tagline {
+    margin-block-start: var(--space-2);
     color: var(--color-text-muted);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-medium);
@@ -115,14 +117,15 @@ const currentPath = normalizePath(Astro.url.pathname);
 
   @media (min-width: 48rem) {
     .site-header__inner {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
       align-items: center;
-      justify-content: space-between;
+      column-gap: clamp(var(--space-7), 8vw, var(--space-9));
       padding-block: var(--space-5);
     }
 
     .site-header__navigation {
-      justify-content: flex-end;
+      justify-content: flex-start;
       gap: var(--space-5);
     }
   }
