@@ -23,9 +23,9 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 
 ## Fase 2 — Home page
 
-- [ ] Presentazione personale
-- [ ] Sintesi della parte professionale
-- [ ] Introduzione ai viaggi e alle passioni
+- [x] Presentazione personale
+- [x] Sintesi della parte professionale
+- [x] Introduzione ai viaggi e alle passioni
 - [ ] Collegamenti alle sezioni principali
 
 ## Fase 3 — Sezione Lavoro
@@ -55,8 +55,8 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 
 ## Fase 6 — Pubblicazione
 
-- [ ] Build di produzione
-- [ ] GitHub Actions
+- [x] Build di produzione
+- [x] GitHub Actions
 - [ ] GitHub Pages
 - [ ] Collegamento del dominio Aruba
 - [ ] HTTPS

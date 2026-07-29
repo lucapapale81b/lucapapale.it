@@ -24,3 +24,15 @@ Il progetto è statico e sarà pubblicato tramite GitHub Pages.
 
 Prima di contribuire, leggere `AGENTS.md` e la documentazione nella cartella
 `docs/`.
+
+## Pubblicazione temporanea
+
+Il sito viene compilato e pubblicato automaticamente tramite GitHub Actions a
+ogni push sul branch `main`. Il workflow può essere avviato anche manualmente
+dalla sezione **Actions** del repository.
+
+Indirizzo temporaneo:
+[https://lucapapale81b.github.io/lucapapale.it/](https://lucapapale81b.github.io/lucapapale.it/)
+
+Il dominio personalizzato `lucapapale.it` verrà collegato in una fase
+successiva.

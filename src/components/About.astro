@@ -1,0 +1,95 @@
+<section class="about" aria-labelledby="about-title">
+  <div class="about__inner container">
+    <div class="about__content">
+      <h2 id="about-title">Chi sono</h2>
+
+      <div class="about__text">
+        <p>
+          Nel lavoro mi occupo di sviluppo backend Java e ho esperienza nella
+          realizzazione di applicazioni enterprise. Mi piace capire bene i
+          problemi prima di risolverli, con attenzione alla qualità del codice,
+          al testing e alla sicurezza.
+        </p>
+
+        <p>
+          Fuori dal lavoro amo viaggiare, fare trekking, correre e scoprire
+          posti nuovi. Questo sito raccoglie entrambe le dimensioni: il mio
+          percorso professionale e le esperienze personali che continuano a
+          formare il mio modo di guardare le cose.
+        </p>
+      </div>
+    </div>
+
+    <dl class="about__perspectives">
+      <div>
+        <dt>Backend</dt>
+        <dd>Java e applicazioni enterprise</dd>
+      </div>
+      <div>
+        <dt>Metodo</dt>
+        <dd>Qualità, testing e sicurezza</dd>
+      </div>
+      <div>
+        <dt>Esplorazione</dt>
+        <dd>Viaggi, trekking e corsa</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .about__inner {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .about__content {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .about__text {
+    display: grid;
+    gap: var(--space-5);
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .about__perspectives {
+    align-self: center;
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .about__perspectives > div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block: var(--space-5);
+    border-block-end: var(--border-width) solid var(--color-border);
+  }
+
+  .about__perspectives dt {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+  }
+
+  .about__perspectives dd {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  @media (min-width: 64rem) {
+    .about__inner {
+      grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
+      gap: clamp(var(--space-8), 10vw, var(--space-9));
+      align-items: center;
+    }
+  }
+</style>

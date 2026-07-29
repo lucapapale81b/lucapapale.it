@@ -1,10 +1,16 @@
 ---
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const withBase = (path: string) =>
+  path === '/' ? baseUrl : `${baseUrl}${path.replace(/^\//, '')}`;
+
 const navigationItems = [
   { label: 'Home', href: '/' },
   { label: 'Lavoro', href: '/lavoro' },
   { label: 'Viaggi', href: '/viaggi' },
   { label: 'Contatti', href: '/contatti' },
-];
+].map((item) => ({ ...item, href: withBase(item.href) }));
 
 const externalLinks = [
   { label: 'GitHub', href: 'https://github.com/lucapapale81b' },
@@ -19,7 +25,11 @@ const currentPath = normalizePath(Astro.url.pathname);
 
 <header class="site-header">
   <div class="site-header__inner container">
-    <a class="site-header__identity" href="/" aria-label="Luca Papale, pagina iniziale">
+    <a
+      class="site-header__identity"
+      href={baseUrl}
+      aria-label="Luca Papale, pagina iniziale"
+    >
       <span class="site-header__name">Luca Papale</span>
       <span class="site-header__tagline">Software Developer · Traveler</span>
     </a>
