@@ -1,0 +1,123 @@
+---
+import TravelCard from './TravelCard.astro';
+import argentinaFlag from '../assets/flags/argentina.svg?url';
+import canadaFlag from '../assets/flags/canada.svg?url';
+import islandaFlag from '../assets/flags/islanda.svg?url';
+import argentinaImage from '../assets/travels/argentina.jpg';
+import canadaImage from '../assets/travels/canada.jpg';
+import islandaImage from '../assets/travels/islanda.jpg';
+
+const travels = [
+  {
+    title: 'Argentina',
+    flag: argentinaFlag,
+    subtitle: 'Patagonia, ghiacciai e natura estrema',
+    description:
+      'Il viaggio che più mi ha colpito, tra trekking, montagne e alcuni dei paesaggi più incredibili che abbia mai visto.',
+    image: {
+      src: argentinaImage,
+      alt: 'Il ghiacciaio Perito Moreno davanti alle montagne innevate in Patagonia',
+    },
+    href: '#',
+  },
+  {
+    title: 'Islanda',
+    flag: islandaFlag,
+    subtitle: 'Terra di ghiaccio e fuoco',
+    description:
+      'Cascate, ghiacciai, vulcani e strade infinite, in un viaggio in cui la natura è la vera protagonista.',
+    image: {
+      src: islandaImage,
+      alt: 'La cascata Skógafoss in Islanda attraversata da un arcobaleno',
+    },
+    href: '#',
+  },
+  {
+    title: 'Canada',
+    flag: canadaFlag,
+    subtitle: 'Foreste, laghi e grandi spazi',
+    description:
+      'Un paese che unisce città moderne e natura sconfinata, ideale per chi ama esplorare.',
+    image: {
+      src: canadaImage,
+      alt: 'Le cascate del Niagara in Canada con un arcobaleno sull’acqua',
+    },
+    href: '#',
+  },
+];
+---
+
+<section class="travel-preview" aria-labelledby="travel-preview-title">
+  <div class="container">
+    <header class="travel-preview__header">
+      <h2 id="travel-preview-title">I miei viaggi</h2>
+      <p>
+        Viaggiare, per me, significa uscire dalla routine, conoscere luoghi
+        nuovi e tornare sempre con qualcosa da imparare. Alcuni viaggi, più di
+        altri, hanno lasciato un segno.
+      </p>
+    </header>
+
+    <div class="travel-preview__grid">
+      {
+        travels.map((travel) => (
+          <TravelCard
+            title={travel.title}
+            subtitle={travel.subtitle}
+            description={travel.description}
+            flag={travel.flag}
+            image={travel.image}
+            href={travel.href}
+          />
+        ))
+      }
+    </div>
+
+    <a class="travel-preview__link" href="#">Scopri tutti i miei viaggi</a>
+  </div>
+</section>
+
+<style>
+  .travel-preview {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-preview__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .travel-preview__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-preview__grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-block-start: var(--space-8);
+  }
+
+  .travel-preview__link {
+    display: inline-block;
+    min-block-size: 2.75rem;
+    margin-block-start: var(--space-7);
+    font-weight: var(--font-weight-semibold);
+    line-height: 2.75rem;
+  }
+
+  @media (min-width: 48rem) {
+    .travel-preview__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-8) var(--space-6);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .travel-preview__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-7);
+    }
+  }
+</style>

@@ -1,0 +1,151 @@
+---
+const experiences = [
+  {
+    company: 'Aruba',
+    role: 'Senior Java Backend Developer',
+    start: '2021',
+    end: 'Oggi',
+    description:
+      'Oggi lavoro allo sviluppo di servizi backend in ambito SPID, identità digitale, autenticazione e sicurezza, con particolare attenzione alla qualità del codice, al testing e all’affidabilità.',
+    topics: ['Java', 'Spring Boot', 'Docker', 'Testing', 'Identity', 'SPID'],
+  },
+  {
+    company: 'Namirial',
+    role: 'Java Senior Software Developer',
+    start: '2012',
+    end: '2021',
+    description:
+      'Qui sono cresciuto come sviluppatore Java, lavorando su firma digitale, web services e soluzioni enterprise. È il periodo in cui ho costruito le basi tecniche del mio modo di sviluppare.',
+    topics: ['Java', 'SOAP', 'Firma digitale', 'Web Services', 'Enterprise', 'PKI'],
+  },
+];
+---
+
+<section class="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <header class="experience__header">
+      <h2 id="experience-title">Il mio percorso</h2>
+      <p>
+        Dal 2012 lavoro nello sviluppo di software enterprise, soprattutto
+        negli ambiti della firma digitale e dell’identità digitale.
+      </p>
+    </header>
+
+    <div class="experience__list">
+      {
+        experiences.map((item) => (
+          <article class="experience__item">
+            <div class="experience__heading">
+              <div>
+                <p class="experience__company">{item.company}</p>
+                <h3>{item.role}</h3>
+              </div>
+
+              <p class="experience__period">
+                <time datetime={item.start}>{item.start}</time>
+                <span aria-hidden="true"> — </span>
+                {item.end === 'Oggi' ? (
+                  <span>Oggi</span>
+                ) : (
+                  <time datetime={item.end}>{item.end}</time>
+                )}
+              </p>
+            </div>
+
+            <p class="experience__description">{item.description}</p>
+
+            <ul class="experience__topics" role="list" aria-label={`Ambiti e tecnologie: ${item.company}`}>
+              {item.topics.map((topic) => <li>{topic}</li>)}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    padding-block: var(--space-section);
+  }
+
+  .experience__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .experience__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .experience__list {
+    display: grid;
+    gap: var(--space-7);
+    margin-block-start: var(--space-8);
+  }
+
+  .experience__item {
+    padding-block-start: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .experience__heading {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .experience__company {
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+
+  .experience__item h3 {
+    margin-block-start: var(--space-2);
+    font-size: var(--font-size-2xl);
+  }
+
+  .experience__period {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .experience__description {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+  }
+
+  .experience__topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-block-start: var(--space-5);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (min-width: 48rem) {
+    .experience__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-8);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .experience__heading {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: var(--space-5);
+    }
+
+    .experience__period {
+      padding-block-start: var(--space-1);
+      white-space: nowrap;
+    }
+  }
+</style>

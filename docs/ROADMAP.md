@@ -26,6 +26,8 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 - [x] Presentazione personale
 - [x] Sintesi della parte professionale
 - [x] Introduzione ai viaggi e alle passioni
+- [x] Esperienze professionali principali
+- [x] Anteprima dei viaggi principali
 - [ ] Collegamenti alle sezioni principali
 
 ## Fase 3 — Sezione Lavoro
