@@ -1,0 +1,28 @@
+---
+interface Props {
+  travelsHref: string;
+}
+
+const { travelsHref } = Astro.props;
+---
+
+<nav class="travel-navigation container--narrow" aria-label="Navigazione viaggi">
+  <a href={travelsHref}>
+    <span aria-hidden="true">←</span>
+    Torna ai viaggi
+  </a>
+</nav>
+
+<style>
+  .travel-navigation {
+    padding-block: 0 var(--space-section);
+  }
+
+  .travel-navigation a {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    gap: var(--space-2);
+    align-items: center;
+    font-weight: var(--font-weight-semibold);
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  homeHref: string;
+  travelsHref: string;
+}
+
+const { title, subtitle, image, imageAlt, homeHref, travelsHref } = Astro.props;
+---
+
+<section class="travel-detail-hero" aria-labelledby="travel-detail-title">
+  <div class="travel-detail-hero__inner container--wide">
+    <nav class="travel-detail-hero__breadcrumb" aria-label="Breadcrumb">
+      <ol role="list">
+        <li><a href={homeHref}>Home</a></li>
+        <li>
+          <span aria-hidden="true">/</span>
+          <a href={travelsHref}>Viaggi</a>
+        </li>
+        <li>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{title}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <header class="travel-detail-hero__header">
+      <h1 id="travel-detail-title">{title}</h1>
+      <p>{subtitle}</p>
+    </header>
+
+    <figure class="travel-detail-hero__media">
+      <Image
+        src={image}
+        alt={imageAlt}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 80rem) 80rem, 100vw"
+        format="webp"
+        quality={85}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .travel-detail-hero {
+    padding-block: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .travel-detail-hero__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .travel-detail-hero__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .travel-detail-hero__breadcrumb li {
+    display: inline-flex;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .travel-detail-hero__breadcrumb a {
+    min-block-size: 2.75rem;
+    align-content: center;
+  }
+
+  .travel-detail-hero__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .travel-detail-hero__header p {
+    margin-block-start: var(--space-4);
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .travel-detail-hero__media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .travel-detail-hero__media :global(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 64rem) {
+    .travel-detail-hero__media {
+      aspect-ratio: 3 / 2;
+    }
+  }
+</style>

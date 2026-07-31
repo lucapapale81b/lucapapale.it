@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import travelHeroImage from '../assets/travels/travel-hero.jpg';
+---
+
+<section class="travel-hero" aria-labelledby="travel-hero-title">
+  <div class="travel-hero__inner container">
+    <div class="travel-hero__content">
+      <h1 id="travel-hero-title">Viaggi</h1>
+      <p>
+        Per me viaggiare significa uscire dalla routine e conoscere luoghi
+        nuovi, ma soprattutto tornare a casa con qualcosa in più. Ogni
+        paesaggio, incontro ed esperienza continua a cambiare, poco alla volta,
+        il mio modo di guardare il mondo.
+      </p>
+    </div>
+
+    <figure class="travel-hero__media">
+      <Image
+        src={travelHeroImage}
+        alt="Un faro rosso e bianco su un isolotto roccioso, con il mare e le montagne innevate sullo sfondo"
+        widths={[480, 640, 800]}
+        sizes="(min-width: 64rem) 40vw, 100vw"
+        format="webp"
+        quality={85}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .travel-hero {
+    padding-block: clamp(var(--space-7), 7vw, var(--space-9));
+  }
+
+  .travel-hero__inner {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .travel-hero__content {
+    max-inline-size: var(--content-narrow);
+    align-self: center;
+  }
+
+  .travel-hero__content p {
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-hero__media {
+    inline-size: min(100%, 34rem);
+    aspect-ratio: 4 / 5;
+    justify-self: center;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+  }
+
+  .travel-hero__media :global(img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 64rem) {
+    .travel-hero {
+      padding-block: clamp(var(--space-8), 8vw, var(--space-9));
+    }
+
+    .travel-hero__inner {
+      grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.9fr);
+      gap: clamp(var(--space-7), 7vw, var(--space-9));
+      align-items: center;
+    }
+
+    .travel-hero__media {
+      justify-self: end;
+    }
+  }
+</style>

@@ -100,8 +100,8 @@ La prima versione può includere:
 
 - Paesi visitati;
 - continenti;
-- città preferita;
-- viaggio che ha lasciato il segno più profondo.
+- città visitate, espresse come valore editoriale non puntuale (`60+`);
+- viaggio portato più nel cuore.
 
 I valori devono provenire da dati verificati. I conteggi oggettivi vanno
 calcolati dai contenuti quando possibile; le preferenze restano valori
@@ -120,7 +120,7 @@ Props previste:
 
 - `countries`;
 - `continents`;
-- `favoriteCity`;
+- `visitedCities`;
 - `mostMeaningfulTrip`.
 
 ### Responsive
@@ -145,6 +145,26 @@ contenuti per Paese.
 
 La mappa non deve mostrare rotte inventate né suggerire che tutti i Paesi
 evidenziati abbiano già una pagina dedicata.
+
+La mappa evidenzia tutti i Paesi e le destinazioni visitati presenti nella
+sorgente dati verificata. Gibilterra rimane visibile come destinazione, ma non
+contribuisce al conteggio degli Stati visitati. I collegamenti sono presenti
+soltanto per i viaggi che dispongono di una pagina pubblicata.
+
+### Provenienza della mappa
+
+La geometria geografica usa
+[`BlankMap-World.svg`](https://commons.wikimedia.org/wiki/File:BlankMap-World.svg),
+una mappa mondiale in proiezione Robinson pubblicata su Wikimedia Commons e
+rilasciata nel pubblico dominio dal titolare dei diritti. Non è richiesta
+attribuzione.
+
+L'asset è conservato localmente in `src/assets/maps/world.svg`. La geometria e
+gli identificatori ISO alpha-2 originali dei Paesi non vengono modificati. In
+fase di build vengono rimosse le dimensioni rigide e la presentazione originale
+viene sovrascritta con i token del Design System. I Paesi visitati sono
+evidenziati dinamicamente attraverso gli identificatori ISO già presenti
+nell'asset, senza modificare le geometrie.
 
 ### Funzionamento
 
@@ -256,6 +276,10 @@ Ogni città prevede:
 - una breve nota personale verificata;
 - eventuale link futuro a un approfondimento.
 
+Nella prima versione Berlino e Praga utilizzano fotografie personali; Londra
+ed Edimburgo mantengono un placeholder esplicito finché non saranno disponibili
+immagini appropriate.
+
 ### Struttura
 
 Una lista editoriale compatta, separata dai Grandi viaggi. I blocchi hanno meno
@@ -330,6 +354,9 @@ con:
 - alt descrittivo;
 - luogo e viaggio di appartenenza;
 - didascalia soltanto quando aggiunge contesto.
+
+La prima selezione comprende i tre grandi viaggi e uno scatto urbano per
+Amburgo, Copenaghen e Malmö, mantenendo un equilibrio tra natura e città.
 
 ### Struttura
 

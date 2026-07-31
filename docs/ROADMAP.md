@@ -45,10 +45,16 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 ## Fase 4 — Sezione Viaggi
 
 - [ ] Elenco viaggi
-- [ ] `TravelCard`
-- [ ] Content Collection dei viaggi
-- [ ] Prima pagina di dettaglio
-- [ ] Fotografie ottimizzate
+- [x] `TravelCard`
+- [x] Definizione iniziale della Content Collection `travels`
+- [x] Integrazione dei primi tre grandi viaggi
+- [x] Route placeholder di dettaglio
+- [x] Prima pagina di dettaglio: Argentina
+- [x] Fotografie ottimizzate
+- [x] Prima versione statica e accessibile della mappa mondiale
+- [x] Fallback testuale dei Paesi visitati
+- [x] Sezione Città preferite
+- [x] Versione 1.0 definitiva della pagina Viaggi
 
 ## Fase 5 — Contatti
 
@@ -74,5 +80,11 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 - [ ] Dark mode
 - [ ] Versione inglese
 - [ ] Mappe dei viaggi
+- [ ] Pagina dedicata per ogni grande viaggio
+- [ ] Sezione fotografica completa
+- [ ] Mappa con tutti i Paesi visitati
+- [ ] Filtri dei viaggi per continente
+- [ ] Ricerca dei viaggi
+- [ ] Pagina dedicata alle città preferite
 - [ ] Creare una pagina Progetti dedicata ai progetti personali e open source
 - [ ] Eventuale backend soltanto in caso di reale necessità

@@ -1,0 +1,118 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TravelDetailHero from '../../components/TravelDetailHero.astro';
+import TravelFacts from '../../components/TravelFacts.astro';
+import TravelNavigation from '../../components/TravelNavigation.astro';
+import TravelReflection from '../../components/TravelReflection.astro';
+import { getPublishedTravels } from '../../utils/travels';
+
+export async function getStaticPaths() {
+  const travels = await getPublishedTravels();
+
+  return travels.map((travel) => ({
+    params: { slug: travel.data.slug },
+    props: { travel },
+  }));
+}
+
+interface Props {
+  travel: CollectionEntry<'travels'>;
+}
+
+const { travel } = Astro.props;
+const {
+  title,
+  subtitle,
+  summary,
+  cover,
+  coverAlt,
+  country,
+  continent,
+  year,
+  duration,
+} = travel.data;
+const isArgentina = travel.data.slug === 'argentina';
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const travelsUrl = `${baseUrl}viaggi`;
+---
+
+<BaseLayout title={`${title} | Viaggi | Luca Papale`} description={summary}>
+  {
+    isArgentina ? (
+      <>
+        <TravelDetailHero
+          title={title}
+          subtitle={subtitle}
+          image={cover}
+          imageAlt={coverAlt}
+          homeHref={baseUrl}
+          travelsHref={travelsUrl}
+        />
+
+        <TravelFacts
+          country={country}
+          continent={continent}
+          year={year}
+          duration={duration}
+        />
+
+        <section class="travel-introduction" aria-labelledby="travel-introduction-title">
+          <div class="container--narrow">
+            <h2 id="travel-introduction-title">Il viaggio</h2>
+            <p>{summary}</p>
+          </div>
+        </section>
+
+        <TravelReflection />
+        <TravelNavigation travelsHref={travelsUrl} />
+      </>
+    ) : (
+      <section class="travel-placeholder" aria-labelledby="travel-title">
+        <div class="travel-placeholder__inner container--narrow">
+          <nav aria-label="Breadcrumb">
+            <a href={travelsUrl}>Viaggi</a>
+            <span aria-hidden="true"> / </span>
+            <span aria-current="page">{title}</span>
+          </nav>
+
+          <h1 id="travel-title">{title}</h1>
+          <p>Il racconto completo di questo viaggio verrà aggiunto prossimamente.</p>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .travel-introduction {
+    padding-block: var(--space-section);
+  }
+
+  .travel-introduction p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-placeholder {
+    padding-block: var(--space-section);
+  }
+
+  .travel-placeholder__inner {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .travel-placeholder nav {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .travel-placeholder p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+</style>

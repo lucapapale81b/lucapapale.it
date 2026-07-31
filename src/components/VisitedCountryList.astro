@@ -1,0 +1,79 @@
+---
+import type { VisitedCountry } from '../utils/visitedCountries';
+
+interface Props {
+  countries: VisitedCountry[];
+}
+
+const { countries } = Astro.props;
+---
+
+<div class="visited-country-list">
+  <h3>Paesi e destinazioni evidenziati</h3>
+  <ul role="list">
+    {
+      countries.map((country) => (
+        <li>
+          {country.href ? (
+            <a href={country.href}>
+              <span>{country.name}</span>
+              <span class="visited-country-list__status">
+                Racconto disponibile
+              </span>
+            </a>
+          ) : (
+            <div>
+              <span>{country.name}</span>
+              <span class="visited-country-list__status">
+                {country.countsAsCountry ? 'Paese visitato' : 'Destinazione visitata'}
+              </span>
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .visited-country-list h3 {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0;
+  }
+
+  .visited-country-list ul {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .visited-country-list li {
+    border-block-end: var(--border-width) solid var(--color-border);
+    list-style: none;
+  }
+
+  .visited-country-list a,
+  .visited-country-list li > div {
+    display: flex;
+    min-block-size: 3.25rem;
+    gap: var(--space-3);
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-3);
+  }
+
+  .visited-country-list a {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    text-decoration-color: var(--color-primary);
+  }
+
+  .visited-country-list__status {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
+    text-align: end;
+  }
+</style>

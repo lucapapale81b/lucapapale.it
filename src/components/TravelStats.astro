@@ -1,0 +1,71 @@
+---
+const stats = [
+  { label: 'Paesi visitati', value: '25' },
+  { label: 'Continenti', value: '3' },
+  { label: 'Città visitate', value: '60+' },
+  { label: 'Viaggio che porto più nel cuore', value: 'Argentina' },
+];
+---
+
+<section class="travel-stats" aria-labelledby="travel-stats-title">
+  <div class="container">
+    <h2 id="travel-stats-title">In breve</h2>
+
+    <dl class="travel-stats__list">
+      {
+        stats.map((stat) => (
+          <div>
+            <dt>{stat.label}</dt>
+            <dd>{stat.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .travel-stats {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-stats__list {
+    display: grid;
+    gap: var(--space-5);
+    margin-block-start: var(--space-7);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-stats__list > div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block-start: var(--space-5);
+  }
+
+  .travel-stats dt {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .travel-stats dd {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+  }
+
+  @media (min-width: 48rem) {
+    .travel-stats__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-7);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .travel-stats__list {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import { favoriteCities } from '../data/favoriteCities';
+import CityPreview from './CityPreview.astro';
+---
+
+<section class="favorite-cities" aria-labelledby="favorite-cities-title">
+  <div class="container">
+    <header class="favorite-cities__header">
+      <h2 id="favorite-cities-title">Città che porto con me</h2>
+      <p>
+        Alcune città mi hanno lasciato qualcosa di speciale, ognuna per motivi
+        diversi: l’atmosfera, la storia, l’architettura o semplicemente il modo
+        in cui mi sono sentito mentre la vivevo.
+      </p>
+    </header>
+
+    <div class="favorite-cities__grid">
+      {
+        favoriteCities.map((city) => (
+          <CityPreview {...city} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .favorite-cities {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .favorite-cities__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .favorite-cities__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .favorite-cities__grid {
+    display: grid;
+    gap: var(--space-6);
+    margin-block-start: var(--space-8);
+  }
+
+  @media (min-width: 48rem) {
+    .favorite-cities__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

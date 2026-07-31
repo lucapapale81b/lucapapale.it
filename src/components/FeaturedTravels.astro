@@ -8,78 +8,65 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="travel-preview" aria-labelledby="travel-preview-title">
+<section class="featured-travels" aria-labelledby="featured-travels-title">
   <div class="container">
-    <header class="travel-preview__header">
-      <h2 id="travel-preview-title">I miei viaggi</h2>
+    <header class="featured-travels__header">
+      <h2 id="featured-travels-title">Grandi viaggi</h2>
       <p>
-        Viaggiare, per me, significa uscire dalla routine, conoscere luoghi
-        nuovi e tornare sempre con qualcosa da imparare. Alcuni viaggi, più di
-        altri, hanno lasciato un segno.
+        Alcuni viaggi, più di altri, hanno lasciato un segno. Sono quelli in cui
+        il paesaggio, il tempo e le esperienze hanno cambiato il mio modo di
+        guardare il mondo.
       </p>
     </header>
 
-    <div class="travel-preview__grid">
+    <div class="featured-travels__grid">
       {
         travels.map(({ data }) => (
           <TravelCard
             title={data.title}
             subtitle={data.subtitle}
             description={data.summary}
-            countryCode={data.countryCode}
             image={data.cover}
             imageAlt={data.coverAlt}
             href={`${baseUrl}viaggi/${data.slug}`}
+            countryCode={data.countryCode}
           />
         ))
       }
     </div>
-
-    <a class="travel-preview__link" href={`${baseUrl}viaggi`}>
-      Scopri tutti i miei viaggi
-    </a>
   </div>
 </section>
 
 <style>
-  .travel-preview {
+  .featured-travels {
     padding-block: var(--space-section);
-    background: var(--color-background-subtle);
   }
 
-  .travel-preview__header {
+  .featured-travels__header {
     max-inline-size: var(--content-narrow);
   }
 
-  .travel-preview__header p {
+  .featured-travels__header p {
     margin-block-start: var(--space-5);
     color: var(--color-text-muted);
     font-size: var(--font-size-lg);
   }
 
-  .travel-preview__grid {
+  .featured-travels__grid {
     display: grid;
     gap: var(--space-8);
     margin-block-start: var(--space-8);
   }
 
-  .travel-preview__link {
-    display: inline-block;
-    min-block-size: 2.75rem;
-    margin-block-start: var(--space-7);
-    font-weight: var(--font-weight-semibold);
-    line-height: 2.75rem;
-  }
-
   @media (min-width: 48rem) {
-    .travel-preview__grid {
+    .featured-travels__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-8) var(--space-6);
     }
   }
 
   @media (min-width: 64rem) {
-    .travel-preview__grid {
+    .featured-travels__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-7);
     }

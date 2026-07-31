@@ -1,0 +1,194 @@
+---
+import worldMapSource from '../assets/maps/world.svg?raw';
+import type { VisitedCountry } from '../utils/visitedCountries';
+import VisitedCountryList from './VisitedCountryList.astro';
+
+interface Props {
+  countries: VisitedCountry[];
+}
+
+const { countries } = Astro.props;
+const visitedSelectors = countries
+  .map(({ code }) => {
+    const id = code.toLowerCase();
+    return `#${id}, #${id} path`;
+  })
+  .join(',\n  ');
+
+/*
+ * La geometria proviene da BlankMap-World.svg. Rimuoviamo le dimensioni rigide
+ * e sovrascriviamo la presentazione senza modificare path e identificatori.
+ */
+const worldMapStyles = `
+  path:not(.oceanxx) { fill: var(--color-sand-200) !important; }
+  .landxx { fill: var(--color-sand-200); stroke: var(--color-background); }
+  .oceanxx { fill: var(--color-background); stroke: var(--color-border); }
+  circle { display: none; }
+  .unxx { display: none; }
+  ${visitedSelectors} {
+    fill: var(--color-primary) !important;
+    stroke: var(--color-focus);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+`;
+const worldMapMarkup = worldMapSource
+  .replace(/<\?xml[^>]*>\s*/u, '')
+  .replace(/<title>World Map<\/title>\s*/u, '')
+  .replace(
+    /<svg[^>]*>/u,
+    '<svg class="world-map" viewBox="0 0 2754 1398" aria-hidden="true" focusable="false">',
+  )
+  .replace('</svg>', `<style>${worldMapStyles}</style></svg>`);
+---
+
+<section class="travel-map" aria-labelledby="travel-map-title">
+  <div class="container--wide">
+    <header class="travel-map__header">
+      <h2 id="travel-map-title">Dove sono stato</h2>
+      <p>
+        Una vista d’insieme dei Paesi e delle destinazioni che ho visitato.
+        Alcuni hanno già un racconto dedicato, altri troveranno spazio nel sito
+        con il tempo.
+      </p>
+    </header>
+
+    <div class="travel-map__visual">
+      <Fragment set:html={worldMapMarkup} />
+    </div>
+
+    <div class="travel-map__details">
+      <div class="travel-map__legend" aria-label="Legenda della mappa">
+        <h3>Legenda</h3>
+        <ul role="list">
+          <li>
+            <span
+              class="travel-map__swatch travel-map__swatch--neutral"
+              aria-hidden="true"
+            ></span>
+            Paese non evidenziato
+          </li>
+          <li>
+            <span class="travel-map__swatch" aria-hidden="true"></span>
+            Paese o destinazione visitata
+          </li>
+          <li>
+            <span
+              class="travel-map__swatch travel-map__swatch--published"
+              aria-hidden="true"
+            ></span>
+            Racconto disponibile
+          </li>
+        </ul>
+      </div>
+
+      <VisitedCountryList countries={countries} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .travel-map {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-map__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .travel-map__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-map__visual {
+    margin-block-start: var(--space-7);
+    overflow: hidden;
+    border-block: var(--border-width) solid var(--color-border);
+    background: var(--color-background);
+  }
+
+  .travel-map__visual svg {
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .travel-map__visual :global(.landxx) {
+    fill: var(--color-sand-200);
+    stroke: var(--color-background);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .travel-map__visual :global(.oceanxx) {
+    fill: var(--color-background);
+    stroke: var(--color-border);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .travel-map__visual :global(circle) {
+    display: none;
+  }
+
+  .travel-map__visual :global(.unxx) {
+    display: none;
+  }
+
+  .travel-map__details {
+    display: grid;
+    gap: var(--space-7);
+    margin-block-start: var(--space-7);
+  }
+
+  .travel-map__legend h3 {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0;
+  }
+
+  .travel-map__legend ul {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-4) 0 0;
+    padding: 0;
+  }
+
+  .travel-map__legend li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    color: var(--color-text-muted);
+    list-style: none;
+  }
+
+  .travel-map__swatch {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    flex: none;
+    border: 2px solid var(--color-background);
+    background: var(--color-primary);
+    outline: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-map__swatch--neutral {
+    background: var(--color-sand-200);
+  }
+
+  .travel-map__swatch--published {
+    border-color: var(--color-accent);
+    background: var(--color-primary);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  @media (min-width: 48rem) {
+    .travel-map__details {
+      grid-template-columns: minmax(12rem, 0.65fr) minmax(20rem, 1fr);
+      align-items: start;
+    }
+  }
+</style>

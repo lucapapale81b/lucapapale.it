@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import type { FavoriteCity } from '../data/favoriteCities';
+
+type Props = FavoriteCity;
+
+const {
+  name,
+  country,
+  countryCode,
+  description,
+  image,
+  imageAlt,
+} = Astro.props;
+---
+
+<article class="city-preview">
+  {
+    image && imageAlt ? (
+      <Image
+        class="city-preview__image"
+        src={image}
+        alt={imageAlt}
+        widths={[640, 960]}
+        sizes="(min-width: 48rem) 50vw, 100vw"
+        format="webp"
+        quality={85}
+        loading="lazy"
+      />
+    ) : (
+      <div
+        class="city-preview__placeholder"
+        role="img"
+        aria-label={`Fotografia di ${name} non ancora disponibile`}
+      >
+        <span>Fotografia in arrivo</span>
+      </div>
+    )
+  }
+
+  <div class="city-preview__content">
+    <div class="city-preview__heading">
+      <div>
+        <h3>{name}</h3>
+        <p class="city-preview__country">{country}</p>
+      </div>
+      <span
+        class="city-preview__badge"
+        aria-label={`Codice Paese: ${country}`}
+      >
+        {countryCode}
+      </span>
+    </div>
+
+    <p class="city-preview__description">{description}</p>
+  </div>
+</article>
+
+<style>
+  .city-preview {
+    display: grid;
+    overflow: hidden;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .city-preview:hover {
+    border-color: var(--color-ink-400);
+  }
+
+  .city-preview__image,
+  .city-preview__placeholder {
+    inline-size: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .city-preview__image {
+    object-fit: cover;
+  }
+
+  .city-preview__placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--space-5);
+    border-block-end: var(--border-width) solid var(--color-border);
+    background: var(--color-background-subtle);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    text-align: center;
+  }
+
+  .city-preview__placeholder span {
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-background-subtle);
+  }
+
+  .city-preview__content {
+    display: grid;
+    gap: var(--space-5);
+    padding: var(--space-5);
+  }
+
+  .city-preview__heading {
+    display: flex;
+    gap: var(--space-4);
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  .city-preview h3 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .city-preview__country {
+    margin-block-start: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .city-preview__badge {
+    flex: none;
+    padding: var(--space-1) var(--space-2);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-background-subtle);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .city-preview__description {
+    color: var(--color-text-muted);
+  }
+</style>

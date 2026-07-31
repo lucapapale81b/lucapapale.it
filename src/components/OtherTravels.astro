@@ -1,0 +1,124 @@
+---
+import { otherTravelGroups } from '../data/otherTravels';
+---
+
+<section class="other-travels" aria-labelledby="other-travels-title">
+  <div class="container">
+    <header class="other-travels__header">
+      <h2 id="other-travels-title">Altri viaggi</h2>
+      <p>
+        Non tutti i viaggi hanno ancora un racconto dedicato, ma ognuno ha
+        lasciato un ricordo.
+      </p>
+    </header>
+
+    <div class="other-travels__groups">
+      {
+        otherTravelGroups.map((group) => {
+          const headingId = `travel-area-${group.area.toLowerCase().replaceAll(' ', '-')}`;
+
+          return (
+            <section class="other-travels__group" aria-labelledby={headingId}>
+              <h3 id={headingId}>{group.area}</h3>
+              <ul role="list">
+                {group.destinations.map((destination) => (
+                  <li>
+                    <div>
+                      <span class="other-travels__country">{destination.country}</span>
+                      {destination.isTerritory && (
+                        <span class="other-travels__note">Territorio visitato</span>
+                      )}
+                    </div>
+                    {destination.cities && (
+                      <span class="other-travels__cities">
+                        {destination.cities.join(' · ')}
+                      </span>
+                    )}
+                    {destination.year && (
+                      <time datetime={String(destination.year)}>{destination.year}</time>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .other-travels {
+    padding-block: var(--space-section);
+  }
+
+  .other-travels__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .other-travels__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .other-travels__groups {
+    display: grid;
+    gap: var(--space-8);
+    margin-block-start: var(--space-8);
+  }
+
+  .other-travels__group h3 {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+
+  .other-travels__group ul {
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .other-travels__group li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-1) var(--space-4);
+    padding-block: var(--space-3);
+    border-block-end: var(--border-width) solid var(--color-border);
+  }
+
+  .other-travels__country {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .other-travels__note,
+  .other-travels__cities,
+  .other-travels__group time {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .other-travels__note {
+    display: block;
+    margin-block-start: var(--space-1);
+  }
+
+  .other-travels__cities {
+    grid-column: 1;
+  }
+
+  .other-travels__group time {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  @media (min-width: 48rem) {
+    .other-travels__groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

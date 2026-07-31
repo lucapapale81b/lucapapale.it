@@ -6,22 +6,38 @@ interface Props {
   title: string;
   subtitle: string;
   description: string;
-  flag: string;
-  image: {
-    src: ImageMetadata;
-    alt: string;
-  };
+  countryCode: 'AR' | 'IS' | 'CA';
+  image: ImageMetadata;
+  imageAlt: string;
   href: string;
 }
 
-const { title, subtitle, description, flag, image, href } = Astro.props;
+import argentinaFlag from '../assets/flags/argentina.svg?url';
+import canadaFlag from '../assets/flags/canada.svg?url';
+import islandaFlag from '../assets/flags/islanda.svg?url';
+
+const flags = {
+  AR: argentinaFlag,
+  IS: islandaFlag,
+  CA: canadaFlag,
+};
+
+const {
+  title,
+  subtitle,
+  description,
+  countryCode,
+  image,
+  imageAlt,
+  href,
+} = Astro.props;
 ---
 
 <article class="travel-card">
   <Image
     class="travel-card__image"
-    src={image.src}
-    alt={image.alt}
+    src={image}
+    alt={imageAlt}
     widths={[480, 720]}
     sizes="(min-width: 64rem) 24rem, (min-width: 48rem) 50vw, 100vw"
     format="webp"
@@ -31,13 +47,19 @@ const { title, subtitle, description, flag, image, href } = Astro.props;
 
   <div class="travel-card__content">
     <h3>
-      <a href={href}>
-        <span>{title}</span>
-        <img class="travel-card__flag" src={flag} alt="" width="30" height="20" />
-      </a>
+      <span>{title}</span>
+      <img
+        class="travel-card__flag"
+        src={flags[countryCode]}
+        alt=""
+        width="30"
+        height="20"
+        aria-hidden="true"
+      />
     </h3>
     <p class="travel-card__subtitle">{subtitle}</p>
     <p class="travel-card__description">{description}</p>
+    <a class="travel-card__link" href={href}>Scopri il viaggio in {title}</a>
   </div>
 </article>
 
@@ -66,12 +88,11 @@ const { title, subtitle, description, flag, image, href } = Astro.props;
     font-size: var(--font-size-2xl);
   }
 
-  .travel-card h3 a {
+  .travel-card h3 {
     display: inline-grid;
     gap: var(--space-2);
     justify-items: start;
     color: var(--color-text);
-    text-decoration-color: transparent;
   }
 
   .travel-card__flag {
@@ -79,11 +100,6 @@ const { title, subtitle, description, flag, image, href } = Astro.props;
     block-size: 1rem;
     border: var(--border-width) solid rgb(23 33 43 / 0.12);
     border-radius: 0.125rem;
-  }
-
-  .travel-card h3 a:hover {
-    color: var(--color-primary);
-    text-decoration-color: currentColor;
   }
 
   .travel-card__subtitle {
@@ -94,5 +110,13 @@ const { title, subtitle, description, flag, image, href } = Astro.props;
 
   .travel-card__description {
     color: var(--color-text-muted);
+  }
+
+  .travel-card__link {
+    min-block-size: 2.75rem;
+    margin-block-start: var(--space-3);
+    align-content: center;
+    justify-self: start;
+    font-weight: var(--font-weight-semibold);
   }
 </style>

@@ -1,0 +1,76 @@
+---
+interface Props {
+  country: string;
+  continent: string;
+  year?: number;
+  duration?: string;
+}
+
+const { country, continent, year, duration } = Astro.props;
+const facts = [
+  { label: 'Paese', value: country },
+  { label: 'Continente', value: continent },
+  ...(year ? [{ label: 'Anno', value: String(year) }] : []),
+  ...(duration ? [{ label: 'Durata', value: duration }] : []),
+];
+---
+
+<section class="travel-facts" aria-labelledby="travel-facts-title">
+  <div class="container--narrow">
+    <h2 id="travel-facts-title">Informazioni principali</h2>
+
+    <dl>
+      {
+        facts.map((fact) => (
+          <div>
+            <dt>{fact.label}</dt>
+            <dd>{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .travel-facts {
+    padding-block: var(--space-7);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-facts h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .travel-facts dl {
+    display: grid;
+    gap: var(--space-5);
+    margin-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-facts dl > div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block-start: var(--space-4);
+  }
+
+  .travel-facts dt {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .travel-facts dd {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  @media (min-width: 48rem) {
+    .travel-facts dl {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-7);
+    }
+  }
+</style>

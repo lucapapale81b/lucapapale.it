@@ -35,6 +35,41 @@ Questo documento raccoglie la struttura iniziale dei contenuti. Testi, dati pers
 - Argentina 2025
 - Praga, Berlino, Amburgo, Copenaghen e Malmö 2026
 
+### Grandi viaggi iniziali
+
+- Argentina
+- Islanda
+- Canada
+
+### Paesi e destinazioni visitati verificati
+
+- Spagna
+- Portogallo
+- Francia
+- Italia
+- Regno Unito
+- Irlanda
+- Belgio
+- Paesi Bassi
+- Germania
+- Danimarca
+- Norvegia
+- Svezia
+- Repubblica Ceca
+- Romania
+- Ungheria
+- Austria
+- Slovenia
+- Croazia
+- Montenegro
+- Grecia
+- Cipro
+- Malta
+- Canada
+- Islanda
+- Argentina
+- Gibilterra, mantenuta come destinazione ma esclusa dal conteggio degli Stati
+
 ## Contatti
 
 - Email

@@ -1,0 +1,38 @@
+---
+interface Props {
+  content?: string;
+}
+
+const {
+  content = 'Questa sezione verrà completata con un racconto personale del viaggio.',
+} = Astro.props;
+---
+
+<section class="travel-reflection" aria-labelledby="travel-reflection-title">
+  <div class="travel-reflection__inner container--narrow">
+    <h2 id="travel-reflection-title">Cosa mi porto a casa</h2>
+    <p>{content}</p>
+  </div>
+</section>
+
+<style>
+  .travel-reflection {
+    padding-block: var(--space-section);
+  }
+
+  .travel-reflection__inner {
+    padding: clamp(var(--space-5), 5vw, var(--space-7));
+    border-inline-start: 0.25rem solid var(--color-accent);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-reflection h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .travel-reflection p {
+    margin-block-start: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+</style>

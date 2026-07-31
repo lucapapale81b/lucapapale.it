@@ -1,0 +1,36 @@
+---
+import FavoriteCities from '../../components/FavoriteCities.astro';
+import FeaturedTravels from '../../components/FeaturedTravels.astro';
+import NextDestinations from '../../components/NextDestinations.astro';
+import OtherTravels from '../../components/OtherTravels.astro';
+import TravelGallery from '../../components/TravelGallery.astro';
+import TravelHero from '../../components/TravelHero.astro';
+import TravelMap from '../../components/TravelMap.astro';
+import TravelStats from '../../components/TravelStats.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getVisitedCountries } from '../../utils/visitedCountries';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const visitedCountries = (await getVisitedCountries()).map((country) => ({
+  ...country,
+  href: country.href
+    ? `${baseUrl}${country.href.replace(/^\//, '')}`
+    : undefined,
+}));
+---
+
+<BaseLayout
+  title="Viaggi | Luca Papale"
+  description="I luoghi che ho visitato, le esperienze che mi hanno formato e ciò che ogni viaggio mi ha lasciato."
+>
+  <TravelHero />
+  <TravelStats />
+  <TravelMap countries={visitedCountries} />
+  <FeaturedTravels />
+  <FavoriteCities />
+  <OtherTravels />
+  <TravelGallery />
+  <NextDestinations />
+</BaseLayout>

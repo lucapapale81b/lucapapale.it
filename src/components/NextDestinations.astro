@@ -1,0 +1,113 @@
+---
+interface Destination {
+  name: string;
+  flag: string;
+}
+
+const destinations: Destination[] = [
+  { name: 'Stati Uniti', flag: '🇺🇸' },
+  { name: 'Egitto', flag: '🇪🇬' },
+  { name: 'Azzorre', flag: '🇵🇹' },
+];
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<section class="next-destinations" aria-labelledby="next-destinations-title">
+  <div class="container next-destinations__inner">
+    <header class="next-destinations__header">
+      <h2 id="next-destinations-title">Il prossimo viaggio</h2>
+      <p>
+        Ogni viaggio lascia il desiderio di ripartire. Alcune destinazioni sono
+        già nella lista delle prossime esperienze che vorrei vivere.
+      </p>
+    </header>
+
+    <ul class="next-destinations__list" aria-label="Destinazioni desiderate">
+      {
+        destinations.map((destination) => (
+          <li>
+            <span aria-hidden="true">{destination.flag}</span>
+            <span>{destination.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="next-destinations__work">
+      <p>
+        Quando non viaggio, mi occupo di sviluppo backend e identità digitale.
+      </p>
+      <a href={`${baseUrl}lavoro/`}>
+        Scopri il mio lavoro <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .next-destinations {
+    padding-block: var(--space-section);
+  }
+
+  .next-destinations__inner {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .next-destinations__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .next-destinations__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .next-destinations__list {
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .next-destinations__list li {
+    display: flex;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+    border-block-start: var(--border-width) solid var(--color-border);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+  }
+
+  .next-destinations__work {
+    grid-column: 1 / -1;
+    max-inline-size: var(--content-narrow);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .next-destinations__work p {
+    color: var(--color-text-muted);
+  }
+
+  .next-destinations__work a {
+    display: inline-block;
+    min-block-size: 2.75rem;
+    margin-block-start: var(--space-3);
+    align-content: center;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (min-width: 48rem) {
+    .next-destinations__inner {
+      grid-template-columns: minmax(0, 1.5fr) minmax(14rem, 1fr);
+      align-items: start;
+    }
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import argentina from '../assets/travels/argentina.jpg';
+import canada from '../assets/travels/canada.jpg';
+import islanda from '../assets/travels/islanda.jpg';
+import amburgo from '../assets/viaggi/citta/amburgo/amburgo-canale-mattoni.jpeg';
+import copenaghen from '../assets/viaggi/citta/copenaghen/nyhavn-case-colorate.jpeg';
+import malmoe from '../assets/viaggi/citta/malmoe/malmoe-lungomare-ponte.jpeg';
+
+const photos = [
+  {
+    image: argentina,
+    alt: 'Il ghiacciaio Perito Moreno davanti alle montagne innevate',
+  },
+  {
+    image: islanda,
+    alt: 'Una cascata islandese tra pareti rocciose e un arcobaleno',
+  },
+  {
+    image: canada,
+    alt: 'Le cascate del Niagara viste dall’alto con un arcobaleno',
+  },
+  {
+    image: amburgo,
+    alt: 'Un canale tra gli edifici in mattoni rossi di Amburgo',
+  },
+  {
+    image: copenaghen,
+    alt: 'Le case colorate e le barche lungo il canale Nyhavn a Copenaghen',
+  },
+  {
+    image: malmoe,
+    alt: 'Il lungomare di Malmö con il ponte sullo sfondo',
+  },
+];
+---
+
+<section class="travel-gallery" aria-labelledby="travel-gallery-title">
+  <div class="container">
+    <header class="travel-gallery__header">
+      <h2 id="travel-gallery-title">Fotografie</h2>
+      <p>
+        Alcuni momenti che raccontano meglio di qualsiasi parola cosa significa
+        viaggiare.
+      </p>
+    </header>
+
+    <div class="travel-gallery__grid">
+      {
+        photos.map((photo) => (
+          <Image
+            class="travel-gallery__image"
+            src={photo.image}
+            alt={photo.alt}
+            widths={[480, 720, 960]}
+            sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw"
+            format="webp"
+            quality={85}
+            loading="lazy"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .travel-gallery {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-gallery__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .travel-gallery__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-gallery__grid {
+    display: grid;
+    gap: var(--space-5);
+    margin-block-start: var(--space-8);
+  }
+
+  .travel-gallery__image {
+    inline-size: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+
+  @media (min-width: 48rem) {
+    .travel-gallery__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .travel-gallery__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
