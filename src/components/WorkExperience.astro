@@ -1,0 +1,180 @@
+---
+const experiences = [
+  {
+    company: 'Aruba',
+    role: 'Senior Java Backend Developer',
+    start: '2021',
+    end: 'oggi',
+    description:
+      'Oggi lavoro allo sviluppo di servizi backend in ambito SPID, identità digitale, autenticazione e sicurezza, con particolare attenzione alla qualità del codice, al testing e all’affidabilità.',
+    responsibilities: [
+      'Sviluppo ed evoluzione di servizi backend Java',
+      'Testing e qualità del software',
+      'Analisi e gestione delle vulnerabilità nelle dipendenze',
+    ],
+    topics: ['Java', 'Spring Boot', 'Docker', 'Testing', 'Identity', 'SPID'],
+  },
+  {
+    company: 'Namirial',
+    role: 'Java Senior Software Developer',
+    start: '2012',
+    end: '2021',
+    description:
+      'Qui sono cresciuto come sviluppatore Java, lavorando su firma digitale, web service e soluzioni enterprise. È il periodo in cui ho costruito le basi tecniche del mio modo di sviluppare.',
+    responsibilities: [
+      'Servizi di firma digitale',
+      'Integrazioni SOAP e sistemi PKI',
+      'Manutenzione ed evoluzione di applicazioni enterprise',
+    ],
+    topics: ['Java', 'SOAP', 'Firma digitale', 'Web Services', 'Enterprise', 'PKI'],
+  },
+];
+---
+
+<section class="work-experience" aria-labelledby="work-experience-title">
+  <div class="container">
+    <header class="work-experience__header">
+      <h2 id="work-experience-title">Esperienze</h2>
+      <p>
+        Due contesti diversi, uniti dal lavoro su servizi enterprise e dalla
+        ricerca di soluzioni affidabili nel tempo.
+      </p>
+    </header>
+
+    <div class="work-experience__list">
+      {
+        experiences.map((experience) => (
+          <article class="work-experience__item">
+            <header class="work-experience__heading">
+              <div>
+                <p class="work-experience__company">{experience.company}</p>
+                <h3>{experience.role}</h3>
+              </div>
+              <p class="work-experience__period">
+                <time datetime={experience.start}>{experience.start}</time>
+                <span aria-hidden="true"> — </span>
+                {experience.end === 'oggi' ? (
+                  <span>oggi</span>
+                ) : (
+                  <time datetime={experience.end}>{experience.end}</time>
+                )}
+              </p>
+            </header>
+
+            <p class="work-experience__description">{experience.description}</p>
+
+            <ul class="work-experience__responsibilities">
+              {experience.responsibilities.map((item) => <li>{item}</li>)}
+            </ul>
+
+            <ul
+              class="work-experience__topics"
+              role="list"
+              aria-label={`Tecnologie e ambiti: ${experience.company}`}
+            >
+              {experience.topics.map((topic) => <li>{topic}</li>)}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-experience {
+    padding-block: var(--space-section);
+  }
+
+  .work-experience__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .work-experience__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .work-experience__list {
+    display: grid;
+    gap: var(--space-9);
+    margin-block-start: var(--space-8);
+  }
+
+  .work-experience__item {
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .work-experience__heading {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .work-experience__company {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+  }
+
+  .work-experience h3 {
+    margin-block-start: var(--space-3);
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: normal;
+  }
+
+  .work-experience__period {
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .work-experience__description {
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+  }
+
+  .work-experience__responsibilities {
+    display: grid;
+    gap: var(--space-3);
+    margin-block: var(--space-6) 0;
+    padding-inline-start: var(--space-5);
+  }
+
+  .work-experience__responsibilities li::marker {
+    color: var(--color-accent);
+  }
+
+  .work-experience__topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (min-width: 48rem) {
+    .work-experience__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--space-9);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .work-experience__heading {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: var(--space-6);
+    }
+
+    .work-experience__period {
+      white-space: nowrap;
+    }
+  }
+</style>

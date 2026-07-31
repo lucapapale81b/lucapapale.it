@@ -1,0 +1,107 @@
+---
+const expertiseAreas = [
+  {
+    title: 'Identità digitale',
+    description:
+      'Sviluppo di servizi backend dedicati a SPID, autenticazione e gestione dell’identità digitale, con particolare attenzione ad affidabilità e sicurezza.',
+    technologies: ['Java', 'Spring Boot', 'SPID', 'REST'],
+  },
+  {
+    title: 'Qualità del software',
+    description:
+      'Approccio orientato a codice leggibile, testing automatico, manutenzione e affidabilità nel tempo.',
+    technologies: ['JUnit 5', 'Mockito', 'Testcontainers'],
+  },
+  {
+    title: 'Sicurezza applicativa',
+    description:
+      'Analisi, aggiornamento e gestione delle vulnerabilità nelle dipendenze Java, con particolare attenzione alla compatibilità tra librerie.',
+    technologies: ['Maven', 'OWASP Dependency-Check', 'Dependency Management'],
+  },
+  {
+    title: 'Osservabilità',
+    description:
+      'Monitoraggio dei servizi backend attraverso metriche e strumenti di osservabilità per comprendere il comportamento delle applicazioni.',
+    technologies: ['Prometheus', 'Grafana', 'Micrometer'],
+  },
+];
+---
+
+<section class="expertise" aria-labelledby="expertise-title">
+  <div class="container">
+    <header class="expertise__header">
+      <h2 id="expertise-title">Aree di esperienza</h2>
+      <p>
+        Gli ambiti professionali sui quali ho lavorato maggiormente nel corso
+        degli anni.
+      </p>
+    </header>
+
+    <div class="expertise__grid">
+      {
+        expertiseAreas.map((area) => (
+          <article class="expertise__item">
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+            <ul role="list" aria-label={`Tecnologie: ${area.title}`}>
+              {area.technologies.map((technology) => <li>{technology}</li>)}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .expertise {
+    padding-block: var(--space-section);
+    background: var(--color-surface);
+  }
+
+  .expertise__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .expertise__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .expertise__grid {
+    display: grid;
+    gap: var(--space-7);
+    margin-block-start: var(--space-8);
+  }
+
+  .expertise__item {
+    padding-block-start: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .expertise__item h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .expertise__item p {
+    margin-block-start: var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .expertise__item ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-block-start: var(--space-5);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  @media (min-width: 48rem) {
+    .expertise__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

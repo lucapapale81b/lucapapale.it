@@ -12,11 +12,12 @@ Questo documento raccoglie la struttura iniziale dei contenuti. Testi, dati pers
 ## Lavoro
 
 - Presentazione come sviluppatore backend Java
+- Metodo di lavoro
 - Esperienze professionali
 - Competenze tecniche
 - Testing e qualità del software
 - Sicurezza e gestione delle dipendenze
-- Progetti personali
+- Formazione
 - Collegamenti esterni
 
 ## Viaggi

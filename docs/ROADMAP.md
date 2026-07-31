@@ -32,13 +32,15 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 
 ## Fase 3 — Sezione Lavoro
 
-- [ ] Profilo professionale
-- [ ] Esperienze
-- [ ] Competenze
-- [ ] Tecnologie
+- [x] Prima versione della pagina Lavoro
+- [x] Profilo professionale
+- [x] Esperienze
+- [x] Competenze
+- [x] Tecnologie
 - [ ] Progetti
-- [ ] Link a GitHub e LinkedIn
+- [x] Link a GitHub e LinkedIn
 - [ ] Eventuale download del CV
+  - [ ] Preparare una versione aggiornata del CV e renderla scaricabile dalla pagina Lavoro
 
 ## Fase 4 — Sezione Viaggi
 
@@ -72,4 +74,5 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 - [ ] Dark mode
 - [ ] Versione inglese
 - [ ] Mappe dei viaggi
+- [ ] Creare una pagina Progetti dedicata ai progetti personali e open source
 - [ ] Eventuale backend soltanto in caso di reale necessità

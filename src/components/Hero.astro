@@ -1,6 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import heroImage from '../assets/perito-moreno.png';
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const workUrl = `${baseUrl}lavoro`;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -16,7 +21,7 @@ import heroImage from '../assets/perito-moreno.png';
       </p>
 
       <div class="hero__actions">
-        <a class="hero__button hero__button--primary" href="#">
+        <a class="hero__button hero__button--primary" href={workUrl}>
           Scopri il mio percorso
         </a>
         <a class="hero__button hero__button--secondary" href="#">

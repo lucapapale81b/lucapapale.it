@@ -1,0 +1,106 @@
+---
+const skillGroups = [
+  {
+    title: 'Backend',
+    items: ['Java', 'Spring Boot', 'REST API', 'SOAP', 'MyBatis'],
+  },
+  {
+    title: 'Testing',
+    items: ['JUnit 5', 'Mockito', 'Testcontainers', 'REST Assured'],
+  },
+  {
+    title: 'Build e qualità',
+    items: [
+      'Maven',
+      'OWASP Dependency-Check',
+      'Gestione dipendenze',
+      'Analisi delle vulnerabilità',
+    ],
+  },
+  {
+    title: 'Infrastruttura e osservabilità',
+    items: [
+      'Docker',
+      'Linux',
+      'Git',
+      'Prometheus',
+      'Micrometer',
+      'Grafana',
+      'Alertmanager',
+    ],
+  },
+];
+---
+
+<section class="skills" aria-labelledby="skills-title">
+  <div class="container">
+    <header class="skills__header">
+      <h2 id="skills-title">Stack tecnico</h2>
+      <p>
+        Tecnologie e strumenti che utilizzo nello sviluppo, nel testing e nella
+        gestione quotidiana dei servizi backend.
+      </p>
+    </header>
+
+    <div class="skills__groups">
+      {
+        skillGroups.map((group) => (
+          <section class="skills__group" aria-labelledby={`skills-${group.title.toLowerCase().replaceAll(' ', '-')}`}>
+            <h3 id={`skills-${group.title.toLowerCase().replaceAll(' ', '-')}`}>{group.title}</h3>
+            <ul>
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .skills__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .skills__header p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .skills__groups {
+    display: grid;
+    gap: var(--space-8) var(--space-7);
+    margin-block-start: var(--space-8);
+  }
+
+  .skills__group {
+    padding-block-start: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .skills__group h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .skills__group ul {
+    display: grid;
+    gap: var(--space-2);
+    margin-block: var(--space-4) 0;
+    padding: 0;
+    color: var(--color-text-muted);
+    list-style: none;
+  }
+
+  @media (min-width: 48rem) {
+    .skills__groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+</style>

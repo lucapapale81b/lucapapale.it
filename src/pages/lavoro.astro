@@ -1,0 +1,319 @@
+---
+import ExpertiseAreas from '../components/ExpertiseAreas.astro';
+import SkillsOverview from '../components/SkillsOverview.astro';
+import WorkExperience from '../components/WorkExperience.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const workPrinciples = [
+  {
+    title: 'Backend',
+    description: 'Applicazioni enterprise, API REST e web service.',
+  },
+  {
+    title: 'Qualità',
+    description: 'Testing automatico, manutenibilità e analisi dei problemi.',
+  },
+  {
+    title: 'Sicurezza',
+    description:
+      'Identità digitale, autenticazione e gestione delle vulnerabilità.',
+  },
+];
+
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const travelsUrl = `${baseUrl}viaggi`;
+---
+
+<BaseLayout
+  title="Lavoro | Luca Papale"
+  description="Percorso professionale, competenze ed esperienza di Luca Papale come Senior Java Backend Developer nei settori dell’identità digitale e della firma digitale."
+>
+  <section class="work-hero" aria-labelledby="work-title">
+    <div class="container">
+      <div class="work-hero__content">
+        <h1 id="work-title">Lavoro</h1>
+        <p class="work-hero__lead">
+          Nel mio lavoro mi occupo di backend Java e sistemi enterprise. È un
+          ambito in cui sono cresciuto lavorando soprattutto su firma e identità
+          digitale, autenticazione e servizi che richiedono attenzione costante
+          ad affidabilità e sicurezza.
+        </p>
+        <p>
+          Cerco di lasciare codice comprensibile e semplice da mantenere,
+          dedicando il giusto spazio alla qualità, al testing automatico e alla
+          gestione delle dipendenze.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-method" aria-labelledby="work-method-title">
+    <div class="work-method__inner container">
+      <div class="work-method__content">
+        <h2 id="work-method-title">Il mio modo di lavorare</h2>
+        <div class="work-method__text">
+          <p>
+            Cerco di comprendere bene il problema prima di iniziare
+            l’implementazione. Un approccio metodico aiuta a scegliere soluzioni
+            concrete, leggibili e sostenibili, senza aggiungere complessità che
+            non serve.
+          </p>
+          <p>
+            Nel lavoro quotidiano presto attenzione alla manutenzione del
+            codice, al testing automatico e alla sicurezza. Il confronto con il
+            team fa parte del processo: condividere il contesto e le decisioni
+            rende più semplice costruire software affidabile nel tempo.
+          </p>
+        </div>
+      </div>
+
+      <dl class="work-method__principles">
+        {
+          workPrinciples.map((principle) => (
+            <div>
+              <dt>{principle.title}</dt>
+              <dd>{principle.description}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <WorkExperience />
+  <ExpertiseAreas />
+  <SkillsOverview />
+
+  <section class="education" aria-labelledby="education-title">
+    <div class="education__inner container">
+      <div>
+        <h2 id="education-title">Formazione</h2>
+        <p class="education__degree">
+          <strong>Laurea in Ingegneria Elettronica</strong><br />
+          Università Politecnica delle Marche
+        </p>
+      </div>
+      <p class="education__continuous">
+        Continuo ad approfondire testing e qualità del software attraverso corsi
+        e progetti pratici, con particolare attenzione a JUnit 5, Mockito,
+        Testcontainers e REST Assured.
+      </p>
+    </div>
+  </section>
+
+  <aside class="work-travel" aria-label="La mia passione per i viaggi">
+    <div class="work-travel__inner container">
+      <p>Fuori dal lavoro, una delle mie passioni più grandi è viaggiare.</p>
+      <a href={travelsUrl}>
+        <span aria-hidden="true">→</span>
+        Scopri i miei viaggi
+      </a>
+    </div>
+  </aside>
+
+  <section class="work-contact" aria-labelledby="work-contact-title">
+    <div class="work-contact__inner container">
+      <div>
+        <h2 id="work-contact-title">Restiamo in contatto</h2>
+        <p>
+          Se vuoi vedere ciò su cui lavoro, confrontarti su questi temi o
+          semplicemente scrivermi, trovi qui i miei riferimenti.
+        </p>
+      </div>
+
+      <ul class="work-contact__links" role="list">
+        <li>
+          <a href="https://github.com/lucapapale81b" rel="me noreferrer">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/lucapapale" rel="me noreferrer">
+            LinkedIn
+          </a>
+        </li>
+        <li><a href="mailto:luca.papale@yahoo.it">Email</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .work-hero,
+  .work-method,
+  .education,
+  .work-travel,
+  .work-contact {
+    padding-block: var(--space-section);
+  }
+
+  .work-hero__content {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .work-hero__lead {
+    margin-block-start: var(--space-6);
+    color: var(--color-text);
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-heading);
+  }
+
+  .work-hero__lead + p {
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .work-method {
+    background: var(--color-background-subtle);
+  }
+
+  .work-method__inner {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .work-method__content {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .work-method__text {
+    display: grid;
+    gap: var(--space-5);
+    margin-block-start: var(--space-6);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .work-method__principles {
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .work-method__principles > div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block: var(--space-5);
+    border-block-end: var(--border-width) solid var(--color-border);
+  }
+
+  .work-method__principles dt {
+    color: var(--color-primary);
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .work-method__principles dd,
+  .education__continuous {
+    color: var(--color-text-muted);
+  }
+
+  .education__inner {
+    display: grid;
+    max-inline-size: var(--content-narrow);
+    gap: var(--space-4);
+  }
+
+  .education {
+    padding-block: var(--space-7);
+  }
+
+  .education h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .education__degree {
+    margin-block-start: var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .education__continuous {
+    max-inline-size: var(--content-narrow);
+    font-size: var(--font-size-sm);
+  }
+
+  .work-travel {
+    padding-block: var(--space-7);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .work-travel__inner {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .work-travel p {
+    color: var(--color-text-muted);
+  }
+
+  .work-travel a {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    gap: var(--space-2);
+    align-items: center;
+    justify-self: start;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .work-contact {
+    border-block-start: var(--border-width) solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .work-contact__inner {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .work-contact p {
+    max-inline-size: var(--content-narrow);
+    margin-block-start: var(--space-4);
+    color: var(--color-text-muted);
+  }
+
+  .work-contact__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .work-contact__links a {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding-inline: var(--space-5);
+    border: var(--border-width) solid var(--color-primary);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+
+  .work-contact__links a:hover {
+    background: var(--color-primary-soft);
+  }
+
+  @media (min-width: 64rem) {
+    .work-method__inner {
+      grid-template-columns: minmax(0, 1.3fr) minmax(16rem, 0.7fr);
+      gap: clamp(var(--space-8), 9vw, var(--space-9));
+      align-items: center;
+    }
+
+    .work-contact__inner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+      gap: var(--space-8);
+    }
+
+    .work-travel__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .work-contact__links {
+      justify-content: flex-end;
+    }
+  }
+</style>
