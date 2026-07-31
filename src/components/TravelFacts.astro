@@ -1,23 +1,25 @@
 ---
 interface Props {
-  country: string;
   continent: string;
   year?: number;
   duration?: string;
+  stops?: Array<unknown>;
 }
 
-const { country, continent, year, duration } = Astro.props;
+const { continent, year, duration, stops = [] } = Astro.props;
 const facts = [
-  { label: 'Paese', value: country },
-  { label: 'Continente', value: continent },
-  ...(year ? [{ label: 'Anno', value: String(year) }] : []),
   ...(duration ? [{ label: 'Durata', value: duration }] : []),
+  ...(stops.length
+    ? [{ label: 'Tappe principali', value: String(stops.length) }]
+    : []),
+  ...(year ? [{ label: 'Periodo', value: String(year) }] : []),
+  { label: 'Continente', value: continent },
 ];
 ---
 
 <section class="travel-facts" aria-labelledby="travel-facts-title">
-  <div class="container--narrow">
-    <h2 id="travel-facts-title">Informazioni principali</h2>
+  <div class="container--wide">
+    <h2 id="travel-facts-title">Il viaggio in numeri</h2>
 
     <dl>
       {
@@ -71,6 +73,12 @@ const facts = [
     .travel-facts dl {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       column-gap: var(--space-7);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .travel-facts dl {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 </style>

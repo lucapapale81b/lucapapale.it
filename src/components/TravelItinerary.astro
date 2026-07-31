@@ -1,0 +1,86 @@
+---
+interface Props {
+  stops: Array<{ name: string; slug: string }>;
+}
+
+const { stops } = Astro.props;
+---
+
+<section class="travel-itinerary" aria-labelledby="travel-itinerary-title">
+  <div class="container--narrow">
+    <header class="travel-itinerary__header">
+      <h2 id="travel-itinerary-title">Itinerario</h2>
+      <p>Le tappe principali del viaggio.</p>
+    </header>
+
+    <ol class="travel-itinerary__list">
+      {
+        stops.map((stop) => (
+          <li><a href={`#${stop.slug}`}>{stop.name}</a></li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .travel-itinerary {
+    padding-block: var(--space-section);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-itinerary__header p {
+    margin-block-start: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-itinerary__list {
+    display: grid;
+    gap: 0;
+    margin-block-start: var(--space-8);
+    counter-reset: itinerary;
+  }
+
+  .travel-itinerary__list li {
+    position: relative;
+    min-block-size: 5rem;
+    padding-inline-start: var(--space-8);
+    counter-increment: itinerary;
+  }
+
+  .travel-itinerary__list li:not(:last-child)::after {
+    position: absolute;
+    inset-block: 2rem 0;
+    inset-inline-start: 0.95rem;
+    inline-size: var(--border-width);
+    background: var(--color-border);
+    content: '';
+  }
+
+  .travel-itinerary__list li::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    display: grid;
+    inline-size: 2rem;
+    block-size: 2rem;
+    place-items: center;
+    border: var(--border-width) solid var(--color-primary);
+    border-radius: var(--radius-pill);
+    background: var(--color-background-subtle);
+    color: var(--color-primary);
+    content: counter(itinerary, decimal-leading-zero);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .travel-itinerary__list a {
+    display: inline-flex;
+    min-block-size: 2.75rem;
+    align-items: flex-start;
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+  }
+</style>

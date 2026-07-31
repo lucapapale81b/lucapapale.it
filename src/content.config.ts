@@ -33,7 +33,36 @@ const travels = defineCollection({
         startDate: z.coerce.date().optional(),
         endDate: z.coerce.date().optional(),
         duration: z.string().min(1).optional(),
-        locations: z.array(z.string().min(1)).optional(),
+        stops: z
+          .array(
+            z.object({
+              name: z.string().min(1),
+              slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+              subtitle: z.string().min(1).optional(),
+              summary: z.array(z.string().min(1)).max(2).optional(),
+              facts: z
+                .array(
+                  z.object({
+                    label: z.string().min(1),
+                    value: z.string().min(1),
+                  }),
+                )
+                .optional(),
+              highlights: z
+                .array(
+                  z.object({
+                    title: z.string().min(1),
+                    description: z.string().min(1),
+                  }),
+                )
+                .optional(),
+              nextStopIntroduction: z.string().min(1).optional(),
+              closing: z.string().min(1).optional(),
+              image: image().optional(),
+              imageAlt: z.string().min(1).optional(),
+            }),
+          )
+          .optional(),
         personalNote: z.string().min(1).optional(),
         reflection: z.string().min(1).optional(),
       })
@@ -55,6 +84,16 @@ const travels = defineCollection({
             message: `Il codice ${travel.countryCode} richiede il continente ${expected.continent}`,
           });
         }
+
+        travel.stops?.forEach((stop, index) => {
+          if (Boolean(stop.image) !== Boolean(stop.imageAlt)) {
+            context.addIssue({
+              code: 'custom',
+              path: ['stops', index, stop.image ? 'imageAlt' : 'image'],
+              message: 'Immagine e testo alternativo devono essere presenti insieme',
+            });
+          }
+        });
       }),
 });
 

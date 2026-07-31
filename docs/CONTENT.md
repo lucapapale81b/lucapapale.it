@@ -41,6 +41,12 @@ Questo documento raccoglie la struttura iniziale dei contenuti. Testi, dati pers
 - Islanda
 - Canada
 
+### Argentina — dati verificati
+
+- Periodo complessivo: 26 settembre — 12 ottobre 2025
+- Buenos Aires: prima e ultima tappa
+- Permanenza a Buenos Aires: 4 notti iniziali e 2 notti finali
+
 ### Paesi e destinazioni visitati verificati
 
 - Spagna

@@ -1,0 +1,58 @@
+---
+interface Props {
+  stops: Array<{ name: string; slug: string }>;
+}
+
+const { stops } = Astro.props;
+const sections = [
+  ...stops.map((stop) => ({
+    title: stop.name,
+    id: stop.slug,
+    description: 'Il racconto di questa tappa verrà completato in un prossimo aggiornamento.',
+  })),
+  {
+    title: 'Esperienze da ricordare',
+    id: 'esperienze-da-ricordare',
+    description: 'Questa sezione raccoglierà le esperienze più significative del viaggio.',
+  },
+  {
+    title: 'Galleria',
+    id: 'galleria',
+    description: 'Una selezione di fotografie verrà aggiunta in un prossimo aggiornamento.',
+  },
+];
+---
+
+<div class="travel-reportage">
+  {
+    sections.map((section) => {
+      const titleId = `${section.id}-title`;
+      return (
+        <section id={section.id} class="travel-reportage__section" aria-labelledby={titleId}>
+          <div class="container--narrow">
+            <h2 id={titleId}>{section.title}</h2>
+            <p>{section.description}</p>
+          </div>
+        </section>
+      );
+    })
+  }
+</div>
+
+<style>
+  .travel-reportage__section {
+    padding-block: var(--space-section);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-reportage__section:nth-child(even) {
+    background: var(--color-background-subtle);
+  }
+
+  .travel-reportage__section p {
+    max-inline-size: 36rem;
+    margin-block-start: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+</style>

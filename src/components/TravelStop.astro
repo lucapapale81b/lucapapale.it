@@ -1,0 +1,235 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Stop {
+  name: string;
+  slug: string;
+  subtitle?: string;
+  summary?: string[];
+  facts?: Array<{ label: string; value: string }>;
+  highlights?: Array<{ title: string; description: string }>;
+  nextStopIntroduction?: string;
+  closing?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+interface Props {
+  stop: Stop;
+  nextStop?: Pick<Stop, 'name' | 'slug'>;
+}
+
+const { stop, nextStop } = Astro.props;
+const titleId = `${stop.slug}-title`;
+const facts = stop.facts ?? [];
+---
+
+<section id={stop.slug} class="travel-stop" aria-labelledby={titleId}>
+  <div class="travel-stop__layout container--wide">
+    <header class="travel-stop__header">
+      <p class="eyebrow">Tappa</p>
+      <h2 id={titleId}>{stop.name}</h2>
+      {stop.subtitle && <p class="travel-stop__subtitle">{stop.subtitle}</p>}
+      {stop.summary?.map((paragraph) => <p>{paragraph}</p>)}
+    </header>
+
+    <div class="travel-stop__media">
+      {
+        stop.image && stop.imageAlt ? (
+          <Image
+            src={stop.image}
+            alt={stop.imageAlt}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 64rem) 55vw, 100vw"
+            format="webp"
+            quality={85}
+            loading="lazy"
+          />
+        ) : (
+          <div role="img" aria-label={`Fotografia di ${stop.name} non ancora disponibile`}>
+            <span>Fotografia in arrivo</span>
+          </div>
+        )
+      }
+    </div>
+
+    <dl class="travel-stop__facts">
+      {facts.map((fact) => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}
+    </dl>
+
+    {
+      stop.highlights?.length && (
+        <section class="travel-stop__highlights" aria-labelledby={`${stop.slug}-highlights-title`}>
+          <h3 id={`${stop.slug}-highlights-title`}>In questa tappa</h3>
+          <div>
+            {stop.highlights.map((highlight) => (
+              <article>
+                <h4>{highlight.title}</h4>
+                <p>{highlight.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      nextStop && stop.nextStopIntroduction && (
+        <p class="travel-stop__closing">
+          {stop.nextStopIntroduction}{' '}
+          <a href={`#${nextStop.slug}`}>{nextStop.name}</a>.
+        </p>
+      )
+    }
+
+    {stop.closing && <p class="travel-stop__closing">{stop.closing}</p>}
+  </div>
+</section>
+
+<style>
+  .travel-stop {
+    padding-block: var(--space-section);
+    scroll-margin-block-start: var(--space-7);
+  }
+
+  .travel-stop__layout {
+    display: grid;
+    gap: var(--space-7);
+  }
+
+  .travel-stop__header {
+    max-inline-size: var(--content-narrow);
+  }
+
+  .travel-stop__header h2 {
+    margin-block-start: var(--space-2);
+  }
+
+  .travel-stop__subtitle {
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .travel-stop__header p:not(.eyebrow) {
+    margin-block-start: var(--space-4);
+  }
+
+  .travel-stop__header p:not(.eyebrow, .travel-stop__subtitle) {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-stop__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-background-subtle);
+  }
+
+  .travel-stop__media :global(img),
+  .travel-stop__media > div {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .travel-stop__media :global(img) {
+    object-fit: cover;
+  }
+
+  .travel-stop__media > div {
+    display: grid;
+    place-items: center;
+    padding: var(--space-5);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .travel-stop__facts {
+    display: grid;
+    gap: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-stop__facts > div {
+    display: grid;
+    gap: var(--space-1);
+    padding-block-start: var(--space-4);
+  }
+
+  .travel-stop__facts dt {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .travel-stop__facts dd {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .travel-stop__closing {
+    max-inline-size: var(--content-narrow);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+  }
+
+  .travel-stop__highlights {
+    padding-block-start: var(--space-7);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-stop__highlights > div {
+    display: grid;
+    gap: var(--space-6);
+    margin-block-start: var(--space-6);
+  }
+
+  .travel-stop__highlights article {
+    padding-block-start: var(--space-4);
+    border-block-start: var(--border-width) solid var(--color-border);
+  }
+
+  .travel-stop__highlights h4 {
+    font-size: var(--font-size-xl);
+  }
+
+  .travel-stop__highlights p {
+    margin-block-start: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .travel-stop__closing a {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  @media (min-width: 48rem) {
+    .travel-stop__facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .travel-stop__highlights > div {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .travel-stop__layout {
+      grid-template-areas:
+        'header media'
+        'facts media'
+        'highlights highlights'
+        'closing closing';
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      align-items: start;
+    }
+
+    .travel-stop__header { grid-area: header; }
+    .travel-stop__media { grid-area: media; aspect-ratio: 3 / 2; }
+    .travel-stop__facts { grid-area: facts; grid-template-columns: 1fr; }
+    .travel-stop__highlights { grid-area: highlights; }
+    .travel-stop__closing { grid-area: closing; }
+  }
+</style>

@@ -7,10 +7,23 @@ interface Props {
   title: string;
   description: string;
   primaryVariant?: 'ocean' | 'glacier';
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description, primaryVariant = 'glacier' } = Astro.props;
+const {
+  title,
+  description,
+  primaryVariant = 'glacier',
+  ogImage,
+  ogImageAlt,
+  ogType = 'website',
+} = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const ogImageUrl = ogImage
+  ? new URL(ogImage, Astro.site ?? Astro.url.origin)
+  : undefined;
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
@@ -28,12 +41,14 @@ const faviconUrl = `${baseUrl}favicon.svg`;
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href={faviconUrl} />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="it_IT" />
     <meta property="og:site_name" content="Luca Papale" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
 
     <title>{title}</title>
   </head>

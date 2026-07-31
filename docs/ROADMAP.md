@@ -50,6 +50,14 @@ La roadmap descrive l'ordine indicativo delle attività. Sono segnate come compl
 - [x] Integrazione dei primi tre grandi viaggi
 - [x] Route placeholder di dettaglio
 - [x] Prima pagina di dettaglio: Argentina
+- [x] Struttura definitiva della pagina Argentina
+- [x] Mappa statica dell'itinerario della pagina Argentina
+- [x] Prima versione della sezione Buenos Aires
+  - [ ] Integrare fotografie personali chiaramente associate a Buenos Aires
+- [x] Prima versione della sezione El Calafate
+- [x] Prima versione della sezione El Chaltén
+  - [ ] Integrare una fotografia personale chiaramente associata a El Chaltén
+- [x] Prima versione della sezione Ushuaia
 - [x] Fotografie ottimizzate
 - [x] Prima versione statica e accessibile della mappa mondiale
 - [x] Fallback testuale dei Paesi visitati
